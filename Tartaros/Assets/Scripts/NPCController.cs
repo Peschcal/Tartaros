@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class NPCController : MonoBehaviour
 {
 
-    // Use this for initialization
 
     public Dialogue dialogue;
     public Transform[] destinations;
@@ -16,8 +15,6 @@ public class NPCController : MonoBehaviour
     private NavMeshAgent agent;
     public static bool inRange = false;
     //bool conversationStarted = false;
-
-    bool resting = false;
 
 
     void Start()
@@ -52,11 +49,11 @@ public class NPCController : MonoBehaviour
     IEnumerator Resting()
     {
         float restingTime = Random.Range(5f, 10f);
-        Debug.Log("Resting Time: " + restingTime);
+     //   Debug.Log("Resting Time: " + restingTime);
         agent.isStopped = true;
         yield return new WaitForSeconds(restingTime);
         agent.isStopped = false;
-        Debug.Log("We just waited "+restingTime+" seconds");
+      //  Debug.Log("We just waited "+restingTime+" seconds");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -95,8 +92,7 @@ public class NPCController : MonoBehaviour
 
     public void EndDialogue()
     {
-        //conversationStarted = false;
-        //inRange = false;
+
         FindObjectOfType<DialogueManager>().EndDialogue();
     }
 }

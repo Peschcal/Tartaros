@@ -18,6 +18,14 @@ public class PlayerController : MonoBehaviour
     private float climbingSpeed = 10;
 
 
+    public static bool bootsPickedUp = false;
+    public static bool helmetPickedUp = false;
+    public static bool glovesPickedUp = false;
+    public static bool armorPickedUp = false;
+
+
+    public static bool protectedAgainstLight = false;
+
 
     // Use this for initialization
     void Start()
@@ -64,11 +72,36 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if(Input.GetButtonDown("Magic") && helmetPickedUp)
+        {
+            Debug.Log("Magic!!!!!!!!!!!!!!!!!!!!");
+        }
+
+        if (Input.GetButtonDown("Grab") && glovesPickedUp)
+        {
+            Debug.Log("Grab stuff");
+        }
+
+        if (Input.GetButtonDown("Transform") && armorPickedUp)
+        {
+            Debug.Log("Transform");
+            protectedAgainstLight = true;
+            StartCoroutine(Protected());
+
+        }
+
+
+        if (Input.GetButtonDown("Crouch") )
+        {
+            Debug.Log("Crouch");
+        }
+
+
         if (controller.isGrounded)
         {
             verticalVelocity = -gravity * Time.deltaTime;
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && bootsPickedUp)
             {
                 verticalVelocity = jumpForce;
             }
@@ -85,10 +118,16 @@ public class PlayerController : MonoBehaviour
         moveVector.z = Input.GetAxis("Vertical") * speed;
 
         controller.Move(moveVector * Time.deltaTime);
+    }
 
-
-
-
+    IEnumerator Protected()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        Debug.Log("Transformation ends");
+        protectedAgainstLight = false;
 
     }
+
+
+
 }
