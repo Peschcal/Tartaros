@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController controller;
 
-    private float speed = 10f;
+    private float speed = 15f;
     private float verticalVelocity;
     private float gravity = 30.0f;
     private float jumpForce = 15f;
@@ -15,71 +15,117 @@ public class PlayerController : MonoBehaviour
     public DialogueManager dManager;
 
 
-    private float climbingSpeed = 10;
-
+    private float climbingSpeedVert = 12;
+    private float climbingSpeedHor = 8;
 
     public static bool bootsPickedUp = false;
     public static bool helmetPickedUp = false;
     public static bool glovesPickedUp = false;
     public static bool armorPickedUp = false;
+    //public static bool bootsPickedUp = true;
+    //public static bool helmetPickedUp = true;
+    //public static bool glovesPickedUp = true;
+    //public static bool armorPickedUp = true;
 
 
     public static bool protectedAgainstLight = false;
 
+    public GameObject magicSpell;
+    bool magicUsed = false;
 
-    // Use this for initialization
+    bool crouched = false;
+
+
+    bool climbing = false;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Debug.Log(verticalVelocity);
-        if (Input.GetButton("Horizontal"))
+        if (!climbing)
         {
-            transform.Translate(new Vector3(Input.GetAxis("Horizontal") * speed, 0, 0));
-            Debug.Log("Horizontal");
-        }
-        if (Input.GetButton("Vertical"))
-        {
-            transform.Translate(new Vector3(0, 0, Input.GetAxis("Vertical") * speed));
-            Debug.Log("Vertical");
-        }
+            if (Input.GetButton("Horizontal"))
+            {
+                transform.Translate(new Vector3(Input.GetAxis("Horizontal") * speed, 0, 0));
+                Debug.Log("Horizontal");
+            }
+            if (Input.GetButton("Vertical"))
+            {
+                transform.Translate(new Vector3(0, 0, Input.GetAxis("Vertical") * speed));
+                Debug.Log("Vertical");
+            }
 
-        //if (Input.GetButton("Jump"))
+            if (controller.isGrounded)
+            {
+                verticalVelocity = -gravity * Time.deltaTime;
+
+                if (Input.GetButtonDown("Jump") && bootsPickedUp)
+                {
+                    verticalVelocity = jumpForce;
+                }
+            }
+            else
+            {
+                verticalVelocity -= gravity * Time.deltaTime;
+            }
+
+
+            Vector3 moveVector = Vector3.zero;
+
+            moveVector.x = Input.GetAxis("Horizontal") * speed;
+            moveVector.y = verticalVelocity;
+            moveVector.z = Input.GetAxis("Vertical") * speed;
+
+            controller.Move(moveVector * Time.deltaTime);
+
+        }
+        else
+        {
+            Vector3 moveVector = Vector3.zero;
+            moveVector.x = Input.GetAxis("Horizontal") * climbingSpeedHor;
+            moveVector.y = Input.GetAxis("Vertical") * climbingSpeedVert;
+            controller.Move(moveVector * Time.deltaTime);
+        }
+        //if (controller.isGrounded)
         //{
-        //    Debug.Log("Jump");
+        //    moveDirection = transform.forward * Input.GetAxis("Vertical")*10f;
         //}
 
 
-        //if (Input.GetButton("Fire1"))
-        //{
-        //    Debug.Log("Fire1");
-        //}
-
-        // if (Input.GetButton("Transform"))
-        // {
-        //    Debug.Log("Transform");
-        // }
+        //float turn = Input.GetAxis("Horizontal");
+        //transform.Rotate(0, turn * 60f * Time.deltaTime, 0);
+        //controller.Move(moveDirection * Time.deltaTime);
 
         if (NPCController.inRange == true)
         {
-            if (Input.GetButtonDown("Fire3"))
+            if (Input.GetButtonDown("Grab"))
             {
                 dManager.DisplayNextSentence();
             }
         }
 
-        if(Input.GetButtonDown("Magic") && helmetPickedUp)
+        if (Input.GetButton("Magic") && helmetPickedUp)
         {
-            Debug.Log("Magic!!!!!!!!!!!!!!!!!!!!");
+
+            UseMagic();
         }
+
+        if (magicUsed)
+        {
+            magicSpell.transform.localScale += new Vector3(0.15F, 0.15f, 0);
+            if (magicSpell.transform.localScale.magnitude >= 10)
+            {
+                EndMagic();
+            }
+        }
+
 
         if (Input.GetButtonDown("Grab") && glovesPickedUp)
         {
-            Debug.Log("Grab stuff");
+           // Debug.Log("Grab stuff");
         }
 
         if (Input.GetButtonDown("Transform") && armorPickedUp)
@@ -91,33 +137,24 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetButtonDown("Crouch") )
+        if (Input.GetButtonDown("Crouch"))
         {
             Debug.Log("Crouch");
-        }
-
-
-        if (controller.isGrounded)
-        {
-            verticalVelocity = -gravity * Time.deltaTime;
-
-            if (Input.GetButtonDown("Jump") && bootsPickedUp)
+            if (!crouched)
             {
-                verticalVelocity = jumpForce;
+                transform.localScale = new Vector3(2, 1, 2f);
+                controller.radius = 0.25f;
+                crouched = true;
+            }
+            else
+            {
+                transform.localScale = new Vector3(2, 2, 2);
+                controller.radius = 0.5f;
+                crouched = false;
             }
         }
-        else
-        {
-            verticalVelocity -= gravity * Time.deltaTime;
-        }
 
-        Vector3 moveVector = Vector3.zero;
 
-        moveVector.x = Input.GetAxis("Horizontal") * speed;
-        moveVector.y = verticalVelocity;
-        moveVector.z = Input.GetAxis("Vertical") * speed;
-
-        controller.Move(moveVector * Time.deltaTime);
     }
 
     IEnumerator Protected()
@@ -127,6 +164,38 @@ public class PlayerController : MonoBehaviour
         protectedAgainstLight = false;
 
     }
+
+    void UseMagic()
+    {
+        Debug.Log("Magic!!!!!!!!!!!!!!!!!!!!");
+
+        magicSpell.SetActive(true);
+        magicUsed = true;
+
+
+    }
+
+    void EndMagic()
+    {
+        magicUsed = false;
+        magicSpell.transform.localScale = new Vector3(1, 1, 1);
+        magicSpell.SetActive(false);
+
+    }
+
+    public void OnLadder(bool state)
+    {
+        if (state)
+        {
+            climbing = true;
+        }
+        else
+        {
+            climbing = false;
+        }
+    }
+
+
 
 
 

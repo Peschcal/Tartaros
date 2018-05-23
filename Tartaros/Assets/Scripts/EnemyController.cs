@@ -90,6 +90,8 @@ public class EnemyController : MonoBehaviour
             rend.material.color = dangerColor;
 
         }
+
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -124,4 +126,25 @@ public class EnemyController : MonoBehaviour
             rend.material.color = idleColor;
         }
     }
+
+    public void HitByMagic()
+    {
+        Debug.Log("Enemy hit");
+        StartCoroutine(Stunned());
+
+    }
+
+
+    IEnumerator Stunned()
+    {
+        float restingTime = 3f;
+        Debug.Log("Stunned for : " + restingTime);
+        
+        agent.isStopped = true;
+        yield return new WaitForSeconds(restingTime);
+       
+        agent.isStopped = false;
+        Debug.Log("We just waited "+restingTime+" seconds");
+    }
+
 }
