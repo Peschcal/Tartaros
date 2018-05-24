@@ -1,0 +1,153 @@
+fileFormatVersion: 2
+guid: e7fdd8c267f6ab04695ab6b84c155096
+timeCreated: 1527094420
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Floor
+    100002: //RootNode
+    100004: Hole
+    100006: Cube
+    100008: Cylinder
+    100010: BooleanCylinder
+    100012: WallLeft
+    100014: WallRight
+    100016: Ceiling
+    100018: BooleanCylinderCeiling
+    100020: WallRight_001
+    100022: Cube_001
+    100024: Cube_000
+    400000: Floor
+    400002: //RootNode
+    400004: Hole
+    400006: Cube
+    400008: Cylinder
+    400010: BooleanCylinder
+    400012: WallLeft
+    400014: WallRight
+    400016: Ceiling
+    400018: BooleanCylinderCeiling
+    400020: WallRight_001
+    400022: Cube_001
+    400024: Cube_000
+    2300000: Floor
+    2300002: Hole
+    2300004: Cube
+    2300006: Cylinder
+    2300008: BooleanCylinder
+    2300010: WallLeft
+    2300012: WallRight
+    2300014: Ceiling
+    2300016: BooleanCylinderCeiling
+    2300018: WallRight_001
+    2300020: Cube_001
+    2300022: Cube_000
+    3300000: Floor
+    3300002: Hole
+    3300004: Cube
+    3300006: Cylinder
+    3300008: BooleanCylinder
+    3300010: WallLeft
+    3300012: WallRight
+    3300014: Ceiling
+    3300016: BooleanCylinderCeiling
+    3300018: WallRight_001
+    3300020: Cube_001
+    3300022: Cube_000
+    4300000: Hole
+    4300002: Floor
+    4300004: Cylinder
+    4300006: Cube
+    4300008: WallRight
+    4300010: WallLeft
+    4300012: BooleanCylinder
+    4300014: Ceiling
+    4300016: BooleanCylinderCeiling
+    4300018: WallRight_001
+    4300020: Cube_001
+    4300022: Cube_000
+    6400000: Floor
+    6400002: Hole
+    6400004: Cube
+    6400006: Cylinder
+    6400008: BooleanCylinder
+    6400010: WallLeft
+    6400012: WallRight
+    6400014: Ceiling
+    6400016: BooleanCylinderCeiling
+    6400018: WallRight_001
+    6400020: Cube_001
+    6400022: Cube_000
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
