@@ -2,7 +2,7 @@ namespace UnityEngine.PostProcessing
 {
     public class PostProcessingContext
     {
-        public PostProcessingProfile profile;
+        public PostProcessProfile profile;
         public Camera camera;
 
         public MaterialFactory materialFactory;

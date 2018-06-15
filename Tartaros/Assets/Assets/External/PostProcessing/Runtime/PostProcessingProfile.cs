@@ -2,7 +2,7 @@ using System;
 
 namespace UnityEngine.PostProcessing
 {
-    public class PostProcessingProfile : ScriptableObject
+    public class PostProcessProfile : ScriptableObject
     {
         #pragma warning disable 0169 // "field x is never used"
 

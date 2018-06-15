@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UnityEditor.PostProcessing
 {
-    using MonitorSettings = UnityEngine.PostProcessing.PostProcessingProfile.MonitorSettings;
+    using MonitorSettings = UnityEngine.PostProcessing.PostProcessProfile.MonitorSettings;
 
     public abstract class PostProcessingMonitor : IDisposable
     {

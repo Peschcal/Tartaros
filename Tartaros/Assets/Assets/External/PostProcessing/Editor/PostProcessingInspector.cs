@@ -8,14 +8,14 @@ using System.Reflection;
 namespace UnityEditor.PostProcessing
 {
     //[CanEditMultipleObjects]
-    [CustomEditor(typeof(PostProcessingProfile))]
+    [CustomEditor(typeof(PostProcessProfile))]
     public class PostProcessingInspector : Editor
     {
         static GUIContent s_PreviewTitle = new GUIContent("Monitors");
 
-        PostProcessingProfile m_ConcreteTarget
+        PostProcessProfile m_ConcreteTarget
         {
-            get { return target as PostProcessingProfile; }
+            get { return target as PostProcessProfile; }
         }
 
         int m_CurrentMonitorID
@@ -50,7 +50,7 @@ namespace UnityEditor.PostProcessing
 
                 var editorInst = (PostProcessingModelEditor)Activator.CreateInstance(editor);
                 editorInst.alwaysEnabled = alwaysEnabled;
-                editorInst.profile = target as PostProcessingProfile;
+                editorInst.profile = target as PostProcessProfile;
                 editorInst.inspector = this;
                 customEditors.Add(effectType, editorInst);
             }

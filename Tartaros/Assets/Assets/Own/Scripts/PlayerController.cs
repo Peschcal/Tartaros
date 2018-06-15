@@ -7,10 +7,10 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController controller;
 
-    private float speed = 15f;
+    public float speed = 15f;
     private float verticalVelocity;
     private float gravity = 30.0f;
-    private float jumpForce = 15f;
+    public float jumpForce = 15f;
 
     public DialogueManager dManager;
 
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public static bool helmetPickedUp = false;
     public static bool glovesPickedUp = false;
     public static bool armorPickedUp = false;
-    //public static bool bootsPickedUp = true;
+   // public static bool bootsPickedUp = true;
     //public static bool helmetPickedUp = true;
     //public static bool glovesPickedUp = true;
     //public static bool armorPickedUp = true;
@@ -99,13 +99,13 @@ public class PlayerController : MonoBehaviour
         //transform.Rotate(0, turn * 60f * Time.deltaTime, 0);
         //controller.Move(moveDirection * Time.deltaTime);
 
-        if (NPCController.inRange == true)
-        {
+       // if (NPCController.inRange == true)
+        //{
             if (Input.GetButtonDown("Grab"))
             {
                 dManager.DisplayNextSentence();
             }
-        }
+       // }
 
         if (Input.GetButton("Magic") && helmetPickedUp)
         {

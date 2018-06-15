@@ -16,31 +16,40 @@ public class NPCController : MonoBehaviour
     public static bool inRange = false;
     //bool conversationStarted = false;
 
+    public bool ableToWalk;
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(destinations[nextDest].position);
+        if (ableToWalk)
+        {
+
+
+            agent = GetComponent<NavMeshAgent>();
+            agent.SetDestination(destinations[nextDest].position);
+        }
     }
 
 
     void Update()
     {
-        if (!agent.pathPending)
+        if (ableToWalk)
         {
-            if (agent.remainingDistance <= 0.01f)
+            if (!agent.pathPending)
             {
-                StartCoroutine(Resting());
-                if (nextDest == destinations.Length - 1)
+                if (agent.remainingDistance <= 0.01f)
                 {
-                    nextDest = 0;
+                    StartCoroutine(Resting());
+                    if (nextDest == destinations.Length - 1)
+                    {
+                        nextDest = 0;
+                    }
+                    else
+                    {
+                        nextDest++;
+                    }
+
+                    agent.destination = (destinations[nextDest].position);
                 }
-                else
-                {
-                    nextDest++;
-                }
-                
-                agent.destination = (destinations[nextDest].position);
             }
         }
 
@@ -49,11 +58,11 @@ public class NPCController : MonoBehaviour
     IEnumerator Resting()
     {
         float restingTime = Random.Range(5f, 10f);
-     //   Debug.Log("Resting Time: " + restingTime);
+        //   Debug.Log("Resting Time: " + restingTime);
         agent.isStopped = true;
         yield return new WaitForSeconds(restingTime);
         agent.isStopped = false;
-      //  Debug.Log("We just waited "+restingTime+" seconds");
+        //  Debug.Log("We just waited "+restingTime+" seconds");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -63,6 +72,8 @@ public class NPCController : MonoBehaviour
         {
             Debug.Log("Gespräch startet");
             inRange = true;
+
+            if(ableToWalk)
             agent.isStopped = true;
             TriggerDialogue();
 
@@ -79,7 +90,8 @@ public class NPCController : MonoBehaviour
 
             EndDialogue();
             inRange = false;
-            agent.isStopped = false;
+            if (ableToWalk)
+                agent.isStopped = false;
         }
     }
 

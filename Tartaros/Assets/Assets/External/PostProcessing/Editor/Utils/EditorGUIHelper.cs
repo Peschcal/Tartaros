@@ -159,7 +159,7 @@ namespace UnityEditor.PostProcessing
 
         static void CopySettings(SerializedProperty settings)
         {
-            var t = typeof(PostProcessingProfile);
+            var t = typeof(PostProcessProfile);
             var settingsStruct = ReflectionUtils.GetFieldValueFromPath(settings.serializedObject.targetObject, ref t, settings.propertyPath);
             var serializedString = t.ToString() + '|' + JsonUtility.ToJson(settingsStruct);
             EditorGUIUtility.systemCopyBuffer = serializedString;

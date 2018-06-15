@@ -14,7 +14,7 @@ namespace UnityEngine.PostProcessing
     public class PostProcessingBehaviour : MonoBehaviour
     {
         // Inspector fields
-        public PostProcessingProfile profile;
+        public PostProcessProfile profile;
 
         public Func<Vector2, Matrix4x4> jitteredMatrixFunc;
 
@@ -27,7 +27,7 @@ namespace UnityEngine.PostProcessing
         RenderTextureFactory m_RenderTextureFactory;
         PostProcessingContext m_Context;
         Camera m_Camera;
-        PostProcessingProfile m_PreviousProfile;
+        PostProcessProfile m_PreviousProfile;
 
         bool m_RenderingInSceneView = false;
 

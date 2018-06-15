@@ -14,7 +14,7 @@ namespace UnityEditor.PostProcessing
         protected SerializedProperty m_EnabledProperty;
 
         internal bool alwaysEnabled = false;
-        internal PostProcessingProfile profile;
+        internal PostProcessProfile profile;
         internal PostProcessingInspector inspector;
 
         internal void OnPreEnable()
