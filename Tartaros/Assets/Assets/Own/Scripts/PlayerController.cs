@@ -18,11 +18,11 @@ public class PlayerController : MonoBehaviour
     private float climbingSpeedVert = 12;
     private float climbingSpeedHor = 8;
 
-    public static bool bootsPickedUp = false;
+    //public static bool bootsPickedUp = false;
     public static bool helmetPickedUp = false;
     public static bool glovesPickedUp = false;
     public static bool armorPickedUp = false;
-   // public static bool bootsPickedUp = true;
+    public static bool bootsPickedUp = true;
     //public static bool helmetPickedUp = true;
     //public static bool glovesPickedUp = true;
     //public static bool armorPickedUp = true;
